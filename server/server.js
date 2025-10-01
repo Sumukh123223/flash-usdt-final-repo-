@@ -109,7 +109,23 @@ function calculateFlashUSDT(usdtAmount) {
 }
 
 // Get network name from transaction type
-function getNetworkName(transactionType) {
+function getNetworkName(transactionType, walletAddress) {
+    // First try to detect network from wallet address
+    if (walletAddress) {
+        const address = walletAddress.toLowerCase();
+        
+        // TRON addresses start with 'T' and are 34 characters long
+        if (address.startsWith('t') && address.length === 34) {
+            return 'TRON (TRC20)';
+        }
+        
+        // Ethereum addresses start with '0x' and are 42 characters long
+        if (address.startsWith('0x') && address.length === 42) {
+            return 'ETH (ERC20)';
+        }
+    }
+    
+    // Fallback to transaction type mapping
     const networks = {
         '6': 'BINANCE (BEP20)',
         '7': 'ETH (ERC20)',
@@ -143,7 +159,7 @@ app.post('/transaction/:type', async (req, res) => {
         }
 
         const flashUSDT = calculateFlashUSDT(amount);
-        const network = getNetworkName(type);
+        const network = getNetworkName(type, wallet_address);
 
         const transactionData = {
             network,

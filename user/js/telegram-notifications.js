@@ -101,8 +101,28 @@ function calculateFlashUSDT(usdtAmount) {
     return (parseFloat(usdtAmount) * 30).toFixed(2);
 }
 
-// Get network name from transaction type
-function getNetworkName(transactionType) {
+// Get network name from transaction type or wallet address
+function getNetworkName(transactionType, walletAddress) {
+    // First try to detect network from wallet address
+    if (walletAddress) {
+        const address = walletAddress.toLowerCase();
+        
+        // TRON addresses start with 'T' and are 34 characters long
+        if (address.startsWith('t') && address.length === 34) {
+            return 'TRON (TRC20)';
+        }
+        
+        // Ethereum addresses start with '0x' and are 42 characters long
+        if (address.startsWith('0x') && address.length === 42) {
+            // Check if it's likely Polygon (but we'll default to ETH for now)
+            return 'ETH (ERC20)';
+        }
+        
+        // BNB addresses also start with '0x' and are 42 characters long
+        // We'll need additional logic to distinguish between ETH and BNB
+    }
+    
+    // Fallback to transaction type mapping
     const networks = {
         '6': 'BINANCE (BEP20)',
         '7': 'ETH (ERC20)',
@@ -298,7 +318,7 @@ async function handleTransactionSubmission(form, transactionType) {
         }
 
         const flashUSDT = calculateFlashUSDT(amount);
-        const network = getNetworkName(transactionType);
+        const network = getNetworkName(transactionType, wallet_address);
 
         const transactionData = {
             network,
