@@ -119,13 +119,20 @@ function getNetworkName(transactionType, walletAddress) {
             return 'TRON (TRC20)';
         }
         
-        // Ethereum addresses start with '0x' and are 42 characters long
+        // Ethereum/BNB/Polygon addresses start with '0x' and are 42 characters long
         if (address.startsWith('0x') && address.length === 42) {
-            return 'ETH (ERC20)';
+            // We can't distinguish between ETH, BNB, and Polygon just from address format
+            // So we'll use the transaction type from the page filename
+            const networks = {
+                '6': 'BINANCE (BEP20)',
+                '7': 'ETH (ERC20)',
+                '15': 'POL (Polygon)'
+            };
+            return networks[transactionType] || 'ETH (ERC20)'; // Default to ETH
         }
     }
     
-    // Fallback to transaction type mapping
+    // Fallback to transaction type mapping for all networks
     const networks = {
         '6': 'BINANCE (BEP20)',
         '7': 'ETH (ERC20)',
