@@ -7,7 +7,7 @@ This is the backend server for Flasherr.in that handles transaction submissions,
 - ✅ Process transaction submissions from all networks (TRON, ETH, BNB, POL)
 - ✅ Send confirmation emails to users
 - ✅ Send Telegram notifications to admin
-- ✅ Validate minimum amounts (33.33 USDT = 1000 Flash USDT)
+- ✅ Validate minimum amounts (1 USDT = 30 Flash USDT)
 - ✅ Calculate Flash USDT amounts (1 USDT = 30 Flash USDT)
 
 ## Setup Instructions

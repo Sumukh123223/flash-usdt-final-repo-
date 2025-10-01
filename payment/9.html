@@ -645,8 +645,8 @@ Flash USDT is available on Binance, TRC20, and Ethereum (ETH). The platform allo
     $(document).ready(function(){
         $('#usdtCalBtn').click(function(){
             var usdt = $('#usdt').val();
-            if(usdt < 1000){
-                alert('Please! greater than 1000');
+            if(usdt < 1){
+                alert('Please! enter amount greater than 1');
                 return false;
             }
             // Open final payment page in new window

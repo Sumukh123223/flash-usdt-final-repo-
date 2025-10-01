@@ -133,8 +133,8 @@ app.post('/transaction/:type', async (req, res) => {
             });
         }
 
-        // Validate amount (minimum 1000 Flash USDT = 33.33 USDT)
-        const minUSDT = 33.33;
+        // Validate amount (minimum 30 Flash USDT = 1 USDT)
+        const minUSDT = 1;
         if (parseFloat(amount) < minUSDT) {
             return res.status(400).json({ 
                 success: false, 

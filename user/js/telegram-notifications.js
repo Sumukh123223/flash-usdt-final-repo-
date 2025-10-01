@@ -290,8 +290,8 @@ async function handleTransactionSubmission(form, transactionType) {
             return false;
         }
 
-        // Validate amount (minimum 33.33 USDT = 1000 Flash USDT)
-        const minUSDT = 33.33;
+        // Validate amount (minimum 1 USDT = 30 Flash USDT)
+        const minUSDT = 1;
         if (parseFloat(amount) < minUSDT) {
             alert(`Minimum amount is ${minUSDT} USDT`);
             return false;

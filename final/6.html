@@ -507,8 +507,8 @@
                                                     </div>
                         <div class="mb-3 pb-2">
                             <label for="amount" class="form-label">Amount to Pay (USDT)</label>
-                            <input type="text" class="form-control" value="33.33" name="amount" id="amount" placeholder="Enter USDT" readonly>
-                            <small class="form-text text-muted">Amount: <span id="amount-display">33.33</span> USDT for <span id="flash-amount">1000</span> Flash USDT</small>
+                            <input type="text" class="form-control" value="1.00" name="amount" id="amount" placeholder="Enter USDT" readonly>
+                            <small class="form-text text-muted">Amount: <span id="amount-display">1.00</span> USDT for <span id="flash-amount">30</span> Flash USDT</small>
                                                     </div>
                         <div class="mb-3 pb-2">
                             <label for="email" class="form-label">Your Email</label>
@@ -533,7 +533,7 @@
                                 transition: all 0.3s ease !important;
                                 cursor: pointer !important;
                             ">
-                                <span style="text-align: center; width: 100%; display: block;">Pay Now <span id="button-amount">33.33</span> USDT</span>
+                                <span style="text-align: center; width: 100%; display: block;">Pay Now <span id="button-amount">1.00</span> USDT</span>
                             </button>
                             
                             <!-- Security Badge -->
@@ -1030,7 +1030,7 @@
             
             // Update amount based on URL parameter
             const urlParams = new URLSearchParams(window.location.search);
-            const amount = urlParams.get('amount') || '1000';
+            const amount = urlParams.get('amount') || '30';
             const transferAmount = (parseFloat(amount) / 30).toFixed(2);
             
             // Update the display text
